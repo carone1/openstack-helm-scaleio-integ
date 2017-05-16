@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart to leverage ScaleIO as general storage. 
+name: scaleio
+version: 0.1.0
