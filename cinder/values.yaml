@@ -70,7 +70,7 @@ network:
       port: 30877
 
 ceph:
-  enabled: true
+  enabled: false 
   monitors: []
   cinder_user: "admin"
   # a null value for the keyring will
@@ -78,13 +78,25 @@ ceph:
   # common/secrets/ceph-client-key
   cinder_keyring: null
 
+scaleio:
+  enabled: true
+
 backends:
   enabled:
-  - rbd1
+#  - rbd1
+  - scaleio
   rbd1:
     secret: null
     user: "admin"
     pool: "volumes"
+  scaleio:
+    san_ip: "192.168.0.45"
+    protection_domain_name: "protection_domain1"
+    storage_pool_name: "pool1"
+    storage_pools: "protection_domain1:pool1"
+    san_login: "admin"
+    san_password: "Cluster1!"
+
 
 glance:
   version: 2

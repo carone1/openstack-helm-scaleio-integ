@@ -61,7 +61,9 @@ spec:
               subPath: glance-api.conf
       volumes:
         - name: imagedir
-          emptyDir: {}
+#          emptyDir: {}
+          hostPath:
+            path: /var/lib/localkube/openstack-helm/glance/images
         - name: bootstrapsh
           configMap:
             name: glance-bin

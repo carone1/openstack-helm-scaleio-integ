@@ -78,3 +78,16 @@ rbd_secret_uuid = {{- include "secrets/ceph-client-key" . -}}
 {{- end }}
 rbd_secret_uuid = {{ .Values.backends.rbd1.secret }}
 report_discard_supported = True
+
+{{- if .Values.scaleio.enabled }}
+[scaleio]
+volume_driver = cinder.volume.drivers.emc.scaleio.ScaleIODriver
+volume_backend_name = scaleio
+san_ip = {{ .Values.backends.scaleio.san_ip }}
+sio_protection_domain_name = {{ .Values.backends.scaleio.protection_domain_name }}
+sio_storage_pool_name = {{ .Values.backends.scaleio.storage_pool_name }}
+sio_storage_pools = {{ .Values.backends.scaleio.storage_pools }}
+san_login = {{ .Values.backends.scaleio.san_login }}
+san_password = {{ .Values.backends.scaleio.san_password }}
+{{- end }}
+

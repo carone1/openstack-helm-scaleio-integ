@@ -46,6 +46,8 @@ spec:
           image: {{ .Values.images.api }}
           imagePullPolicy: {{ .Values.images.pull_policy }}
           {{- if .Values.resources.enabled }}
+          securityContext:
+            privileged: true
           resources:
             limits:
               cpu: {{ .Values.resources.api.limits.cpu | quote }}
@@ -81,6 +83,7 @@ spec:
 {{- if eq .Values.storage "file" }}
             - name: glance-images
               mountPath: {{ .Values.conf.glance.glance_store.glance.store.filesystem_store_datadir }}
+              readOnly: false
 {{- else }}
             - name: cephconf
               mountPath: /etc/ceph/ceph.conf
@@ -100,6 +103,8 @@ spec:
             name: glance-etc
 {{- if eq .Values.storage "file" }}
         - name: glance-images
+#          hostPath:
+#            path: /var/lib/glance/images
           persistentVolumeClaim:
             claimName: glance-images
 {{- else }}

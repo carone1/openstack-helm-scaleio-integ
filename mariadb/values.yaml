@@ -27,7 +27,7 @@ replicas: 3
 # note enabling this flag takes precedence when enabled and
 # will override certain things, like the replicas requested
 development:
-  enabled: false
+  enabled: true 
   storage_path: /var/lib/localkube/openstack-helm/mariadb
 
 resources:
