@@ -45,9 +45,11 @@ spec:
         - name: glance-api
           image: {{ .Values.images.api }}
           imagePullPolicy: {{ .Values.images.pull_policy }}
-          {{- if .Values.resources.enabled }}
           securityContext:
-            privileged: true
+            runAsUser: 0
+#            fsGroup: 1001
+#            privileged: true
+          {{- if .Values.resources.enabled }}
           resources:
             limits:
               cpu: {{ .Values.resources.api.limits.cpu | quote }}

@@ -113,7 +113,7 @@ conf:
           rbd_store_pool: images
           rbd_store_user: admin
           rbd_store_ceph_conf: /etc/ceph/ceph.conf
-          filesystem_store_datadir: /var/lib/glance/images
+          filesystem_store_datadir: /var/lib/glance
   paste_registry:
     override:
     append:

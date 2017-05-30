@@ -37,6 +37,8 @@ spec:
         - name: glance-registry
           image: {{ .Values.images.registry }}
           imagePullPolicy: {{ .Values.images.pull_policy }}
+          securityContext:
+            runAsUser: 0
           {{- if .Values.resources.enabled }}
           resources:
             limits:
